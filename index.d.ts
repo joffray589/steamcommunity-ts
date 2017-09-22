@@ -278,6 +278,16 @@ declare namespace SteamCommunity {
         OnlineUsingBigPicture   = 1024
     }
 
+    interface Persona{
+        steamID:            SteamID;
+        personaName:        string;
+        personaState:       SteamCommunity.PersonaState;
+        personaStateFlags:  SteamCommunity.PersonaStateFlag;
+        avatarHash:         string;
+        inGame:             boolean;
+        inGameName?:        string;
+    }
+
 }
 
 declare class SteamCommunity {
