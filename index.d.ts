@@ -252,6 +252,32 @@ declare namespace SteamCommunity {
         revocation_code: string;
     }
 
+    enum ChatState {
+        Offline     = 0,
+        LoggingOn   = 1,
+        LogOnFailed = 2,
+        LoggedOn    = 3
+    }
+
+    enum PersonaState {
+        Offline          = 0,
+        Online          = 1,
+        Busy            = 2,
+        Away            = 3,
+        Snooze          = 4,
+        LookingToTrade  = 5,
+        LookingToPlay   = 6,
+        Max             = 7
+    }
+
+    enum PersonaStateFlag {
+        HasRichPresence         = 1,
+        InJoinableGame          = 2,
+        OnlineUsingWeb          = 256,
+        OnlineUsingMobile       = 512,
+        OnlineUsingBigPicture   = 1024
+    }
+
 }
 
 declare class SteamCommunity {
@@ -324,6 +350,11 @@ declare class SteamCommunity {
     startConfirmationChecker(pollInterval: number, identitySecret: string);
     stopConfirmationChecker();
     checkConfirmations();
+
+    chatLogon(interval?: number, uiMode?: "web" | "mobile");
+    chatMessage(recipientId: SteamID, text: string, type?: "saytext" | "typing" , callback?: (err: Error) => any);
+
+    chatLogoff();
 
 }
 
